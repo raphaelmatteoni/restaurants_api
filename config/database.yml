@@ -1,0 +1,18 @@
+#encoding: utf-8
+development:
+  adapter: postgresql
+  encoding: utf8
+  database: restaurants_api_development
+  pool: 5
+
+test:
+  adapter: postgresql
+  encoding: utf8
+  database: restaurants_api_test
+  pool: 5
+
+production:
+  adapter: postgresql
+  encoding: utf8
+  database: restaurants_api_production
+  pool: 5
