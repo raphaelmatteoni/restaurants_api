@@ -4,4 +4,7 @@ class Restaurant < ApplicationRecord
 
 	# validations
 	validates :name, presence: true
+
+	# class methdos
+	scope :by_name, -> name { where("name ILIKE '%#{name}%'") }
 end

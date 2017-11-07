@@ -5,7 +5,7 @@ class Api::V1::DishesController < Api::V1::ApiController
 	def index
 		@dishes = Dish.all
 
-		render json: @dishes
+		render json: @dishes.to_json(include: :restaurant)
 	end
 
 	# GET /api/v1/dish/1
@@ -26,7 +26,7 @@ class Api::V1::DishesController < Api::V1::ApiController
 
 	# PATCH/PUT /api/v1/dishes/1
 	def update
-		if @dishes.update(dish_params)
+		if @dish.update(dish_params)
 			render json: @dish
 		else
 			render json: @dish.errors, status: :unprocessable_entity
@@ -44,6 +44,6 @@ class Api::V1::DishesController < Api::V1::ApiController
 		end
 
 		def dish_params
-			params.require(:dish).permit(:name)
+			params.require(:dish).permit(:name, :restaurant_id, :price)
 		end
 end

@@ -1,9 +1,10 @@
 class Api::V1::RestaurantsController < Api::V1::ApiController
 	before_action :set_restaurant, only: [:show, :update, :destroy]
+  has_scope :by_name
 
 	# GET /api/v1/restaurants
 	def index
-		@restaurants = Restaurant.all
+		@restaurants = apply_scopes(Restaurant).order('id DESC')
 
 		render json: @restaurants
 	end
